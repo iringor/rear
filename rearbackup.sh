@@ -18,13 +18,13 @@ MSGFILE=/tmp/`basename $0`.msg
 echo "Running hostinfo.sh"
 /usr/local/bin/hostinfo.sh
 
-RECIPIENT="richard_aranas@yamaha-motor.com brad_crowder@yamaha-motor.com richard_on@yamaha-motor.com isauro_ringor@yamaha-motor.com"
+RECIPIENT="ilr@notrealemail.com"
 
 REL=`cat /etc/redhat-release |awk -F"release" '{print $2}' |awk -F. '{print $1}'`
 
 HOSTNAME=$(hostname -s)
 
-SENDER="donotreply@yamaha-motor.com"
+SENDER="donotreply@notrealemail.com"
 
 send_message()
 {
