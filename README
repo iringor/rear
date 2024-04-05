@@ -1,0 +1,14 @@
+About site.conf:
+
+This file is added to /etc/rear directory to specify what directoris will not be included in the backup.  The plan is to create an BMR or Bare-Metal Recovery of a VM that only have the system files and the empty local filesystems.  The complete restore will be done by an enterprise backup solution like NetBackup or Commvault.  We do not backup virtual machine and this BMR recovery can also be used to migrate server to another location or to create clones.
+
+The other objective is to create an image that can fit a single DVD disk, or less than 4G even if the server is about 4TB database server in size.  That is why non-system files will be skipped in this Rear Backup.
+
+There is an existing BMR backup that we use which is known as Mondo and this ReaR backup will be a second BMR solution in case Mondo fail run or restore so it should compliment and not compete with the Mondo Backup.
+
+The script is saved in /usr/local/sbin/rearbackup.sh to call the mkbackup.  It will run once a month on a weekend using cron.
+
+Example:
+[root@server ~]# crontab -l
+45 1 15-21 * * test $(date +\%u) -eq 7 && /usr/local/sbin/rearbackup.sh >/dev/null 2>&1
+
